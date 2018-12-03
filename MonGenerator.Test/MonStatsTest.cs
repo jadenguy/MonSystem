@@ -6,6 +6,7 @@ namespace MonGenerator.Tests
     public class MonStatsTest
     {
         [TestCase(1)]
+        [TestCase(99)]
         public void MonStatsTestAttack(int level)
         {
             //arrange
@@ -19,6 +20,7 @@ namespace MonGenerator.Tests
             Assert.AreEqual(expected, actual);
         }
         [TestCase(1)]
+        [TestCase(99)]
         public void MonStatsTestHp(int level)
         {
             //arrange
@@ -27,6 +29,20 @@ namespace MonGenerator.Tests
 
             //act
             var actual = stats.Hp;
+
+            //assert
+            Assert.AreEqual(expected, actual);
+        }
+        [TestCase(1)]
+        [TestCase(99)]
+        public void MonStatsTestLevel(int level)
+        {
+            //arrange
+            MonStats stats = new MonStats(level);
+            var expected = level;
+
+            //act
+            var actual = stats.Level;
 
             //assert
             Assert.AreEqual(expected, actual);
