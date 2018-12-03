@@ -10,10 +10,23 @@ namespace MonGenerator.Tests
         {
             //arrange
             MonStats stats = new MonStats(level);
-            var expected = 1;
+            var expected = level;
 
             //act
             var actual = stats.Attack;
+
+            //assert
+            Assert.AreEqual(expected, actual);
+        }
+        [TestCase(1)]
+        public void MonStatsTestHp(int level)
+        {
+            //arrange
+            MonStats stats = new MonStats(level);
+            var expected = level;
+
+            //act
+            var actual = stats.Hp;
 
             //assert
             Assert.AreEqual(expected, actual);
