@@ -11,7 +11,7 @@ namespace MonGenerator
         {
             get => _level; private set
             {
-                var newValue = IntBetween(value, 1, 100);
+                var newValue = IntBetween(value, 1, 100, true);
                 if (newValue != _level)
                 {
                     _level = newValue;
@@ -24,7 +24,7 @@ namespace MonGenerator
             get => _attack; private set
             {
                 var newValue = IntBetween(value, 1, 255);
-                if (newValue != _level)
+                if (newValue != _attack)
                 {
                     _attack = newValue;
                 }
@@ -36,7 +36,7 @@ namespace MonGenerator
             get => _hp; private set
             {
                 var newValue = IntBetween(value, 1, 255);
-                if (newValue != _level)
+                if (newValue != _hp)
                 {
                     _hp = newValue;
                 }
