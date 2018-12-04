@@ -3,43 +3,32 @@ using NUnit.Framework;
 namespace MonGenerator.Tests
 {
     [TestFixture]
-    public class MonStatsTest
+    public class MonStatsTestGeneric
     {
-        [TestCase(-1)]
-        [TestCase(0)]
-        [TestCase(99)]
-        [TestCase(100)]
-        public void MonStatsTestAttack(int level)
+        [TestCase(0, 1)]
+        [TestCase(1, 1)]
+        [TestCase(100, 100)]
+        [TestCase(101, 100)]
+        public void MonStatsTestGenericAttack(int level, int expectedAttack)
         {
             //arrange
             MonStats stats = new MonStats(level);
-
-            int expected;
-            if (level > 99)
-            {
-                expected = 99;
-            }
-            else if (level < 0)
-            {
-                expected = 0;
-            }
-            else
-            {
-                expected = level;
-            }
+            var expected = expectedAttack;
             //act
             var actual = stats.Attack;
 
             //assert
             Assert.AreEqual(expected, actual);
         }
-        [TestCase(1)]
-        [TestCase(99)]
-        public void MonStatsTestHp(int level)
+        [TestCase(0, 1)]
+        [TestCase(1, 1)]
+        [TestCase(100, 100)]
+        [TestCase(101, 100)]
+        public void MonStatsTestGenericHp(int level, int expectedHp)
         {
             //arrange
             MonStats stats = new MonStats(level);
-            var expected = level;
+            var expected = expectedHp;
 
             //act
             var actual = stats.Hp;
@@ -47,13 +36,15 @@ namespace MonGenerator.Tests
             //assert
             Assert.AreEqual(expected, actual);
         }
-        [TestCase(1)]
-        [TestCase(99)]
-        public void MonStatsTestLevel(int level)
+        [TestCase(0, 1)]
+        [TestCase(1, 1)]
+        [TestCase(100, 100)]
+        [TestCase(101, 100)]
+        public void MonStatsTestGenericLevel(int level, int expectedLevel)
         {
             //arrange
             MonStats stats = new MonStats(level);
-            var expected = level;
+            var expected = expectedLevel;
 
             //act
             var actual = stats.Level;
