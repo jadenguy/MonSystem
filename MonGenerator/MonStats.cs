@@ -11,7 +11,7 @@ namespace MonGenerator
         {
             get => _level; private set
             {
-                var newValue = IntBetween(value, 1, 100, true);
+                var newValue = InRange(value, MonStatRanges.levelMin, MonStatRanges.levelMax);
                 if (newValue != _level)
                 {
                     _level = newValue;
@@ -23,7 +23,7 @@ namespace MonGenerator
         {
             get => _attack; private set
             {
-                var newValue = IntBetween(value, 1, 255);
+                var newValue = InRange(value, MonStatRanges.attackMin, MonStatRanges.attackMax);
                 if (newValue != _attack)
                 {
                     _attack = newValue;
@@ -35,7 +35,7 @@ namespace MonGenerator
         {
             get => _hp; private set
             {
-                var newValue = IntBetween(value, 1, 255);
+                var newValue = InRange(value, MonStatRanges.hpMin, MonStatRanges.hpMax);
                 if (newValue != _hp)
                 {
                     _hp = newValue;
@@ -49,13 +49,18 @@ namespace MonGenerator
             Attack = Level;
             Hp = Level;
         }
-        public static int IntBetween(int value, int minimum, int maximum, bool inclusive = true)
+
+        public static int InRange(int value, MonStatRanges minimum, MonStatRanges maximum)
+        {
+            return IntBetween(value, (int)minimum, (int)maximum, true);
+        }
+
+        public static int IntBetween(int value, int lowerBound, int upperBound, bool inclusive = true)
         {
             int ret;
-            int buffer = 0;
-            if (!inclusive) buffer = 1;
-            if (value > maximum - buffer) ret = maximum - buffer;
-            else if (value < minimum + buffer) ret = minimum + buffer;
+            int inclusivityDelta = inclusive ? 0 : 1;
+            if (value > upperBound - inclusivityDelta) ret = upperBound - inclusivityDelta;
+            else if (value < lowerBound + inclusivityDelta) ret = lowerBound + inclusivityDelta;
             else ret = value;
             return ret;
         }
