@@ -6,6 +6,7 @@ namespace MonGenerator.Tests
     public class MonStatsTestGeneric
     {
         [TestCase(1, 5, 3, false, 3)]
+        [TestCase(1, 5, 3, true, 3)]
         [TestCase(1, 5, 5, false, 4)]
         [TestCase(1, 5, 5, true, 5)]
         [TestCase(1, 5, 1, false, 2)]
