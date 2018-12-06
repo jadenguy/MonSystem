@@ -36,52 +36,25 @@ namespace MonGenerator.Tests
             Assert.AreEqual(expected, actual);
         }
 
-        [TestCase(0, 1)]
-        [TestCase(1, 1)]
-        [TestCase(100, 100)]
-        [TestCase(101, 100)]
-        public void MonStatsTestGenericAttackTest(int level, int expectedAttack)
+        [TestCase(0, 1, 1, 1)]
+        [TestCase(1, 1, 1, 1)]
+        [TestCase(100, 100, 100, 100)]
+        [TestCase(101, 100, 100, 100)]
+        public void MonStatsTestGenericStatsTest(int level, int expectedLevel, int expectedAttack, int expectedHp)
         {
             //--Arrange
             MonStats stats = new MonStats(level);
-            var expected = expectedAttack;
             //--Act
-            var actual = stats.Attack;
+
+            var actualLevel = stats.Level;
+            var actualHp = stats.Hp;
+            var actualAttack = stats.Attack;
 
             //--Assert
-            Assert.AreEqual(expected, actual);
+            Assert.AreEqual(expectedLevel, actualLevel);
+            Assert.AreEqual(expectedAttack, actualAttack);
+            Assert.AreEqual(expectedHp, actualHp);
         }
-        [TestCase(0, 1)]
-        [TestCase(1, 1)]
-        [TestCase(100, 100)]
-        [TestCase(101, 100)]
-        public void MonStatsTestGenericHpTest(int level, int expectedHp)
-        {
-            //--Arrange
-            MonStats stats = new MonStats(level);
-            var expected = expectedHp;
 
-            //--Act
-            var actual = stats.Hp;
-
-            //--Assert
-            Assert.AreEqual(expected, actual);
-        }
-        [TestCase(0, 1)]
-        [TestCase(1, 1)]
-        [TestCase(100, 100)]
-        [TestCase(101, 100)]
-        public void MonStatsTestGenericLevelTest(int level, int expectedLevel)
-        {
-            //--Arrange
-            MonStats stats = new MonStats(level);
-            var expected = expectedLevel;
-
-            //--Act
-            var actual = stats.Level;
-
-            //--Assert
-            Assert.AreEqual(expected, actual);
-        }
     }
 }
