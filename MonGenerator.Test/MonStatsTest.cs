@@ -3,7 +3,7 @@ using NUnit.Framework;
 namespace MonGenerator.Tests
 {
     [TestFixture]
-    public class MonStatsTestGeneric
+    public class MonStatsGenericTest
     {
         [TestCase(1, 5, 3, false, 3)]
         [TestCase(1, 5, 3, true, 3)]
