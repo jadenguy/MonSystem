@@ -2,6 +2,7 @@
 
 namespace Repository.Tests
 {
+    [TestFixture]
     public class RepositoryTests
     {
         [SetUp]
@@ -9,7 +10,7 @@ namespace Repository.Tests
         {
         }
 
-        [Test]
+        // [Test]
         public void Test1()
         {
             Assert.Pass();

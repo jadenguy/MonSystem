@@ -4,6 +4,6 @@ namespace Repository
 {
     public class IEntity
     {
-        public string Id;
+        public int Id;
     }
 }
