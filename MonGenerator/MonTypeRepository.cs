@@ -5,11 +5,19 @@ namespace MonGenerator
 {
     public class MonTypeDictionaryRepository : IRepository<MonType>
     {
-        private Dictionary<int,MonType> _repository;
+        private Dictionary<int, MonType> _repository;
 
         public MonTypeDictionaryRepository()
         {
-            _repository = new Dictionary<int,MonType>();
+            _repository = new Dictionary<int, MonType>();
+        }
+        public MonTypeDictionaryRepository(List<MonType> repository)
+        {
+            _repository = new Dictionary<int, MonType>();
+            for (int i = 0; i < repository.Count; i++)
+            {
+                _repository.Add(i,repository[i]);
+            }
         }
 
         public IEnumerable<MonType> List => _repository.Values;
