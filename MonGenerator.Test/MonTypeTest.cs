@@ -6,6 +6,10 @@ namespace MonGenerator.Tests
     public class MonTypeTest
     {
         [TestCase("newMon", 0, 5, 5, true)]
+        [TestCase("newMon", 0, 5, 95, true)]
+        [TestCase("newMon", 0, 200, -200, false)]
+        [TestCase("newMon", 0, 100, -100, true)]
+        [TestCase("newMon", 0, 5, 100, false)]
         public void MonTypeValidTest(string speciesName, int id, int attack, int hp, bool isValid)
         {
             //--Arrange
