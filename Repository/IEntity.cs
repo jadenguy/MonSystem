@@ -2,9 +2,8 @@
 
 namespace Repository
 {
-    public abstract class IEntity
+    public class IEntity
     {
         public int Id;
-        // public virtual bool Validate() => true;
     }
 }
