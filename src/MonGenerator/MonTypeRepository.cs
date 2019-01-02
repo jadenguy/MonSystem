@@ -3,7 +3,7 @@ using Repository;
 
 namespace MonGenerator
 {
-    public class MonTypeDictionaryRepository : DictionaryRepository<MonType>
+    public class MonTypeDictionaryRepository : MonGeneratorRepository<MonType>
     {
     }
 }
