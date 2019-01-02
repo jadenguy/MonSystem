@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonGenerator.Test", "tests\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository", "src\Repository\Repository.csproj", "{E3B3E296-057F-4953-BC0C-1B9374296347}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RepositoryTest", "tests\RepositoryTest\RepositoryTest.csproj", "{96A74299-D838-4006-87EC-F505F9156E9A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RepositoryTest", "tests\Repository.Test\Repository.Test.csproj", "{96A74299-D838-4006-87EC-F505F9156E9A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
