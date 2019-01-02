@@ -64,7 +64,7 @@ namespace Common.Math
         /// <param name="value">the value to check</param>
         /// <param name="min">Inclusive minimum border</param>
         /// <param name="max">Inclusive maximum border</param>
-        /// <returns>return value between the min & max else false</returns>
+        /// <returns>return value between the min inclusively & max  inclusively </returns>
         public static T InBetweenII<T>(this T value, T min, T max) where T : IComparable<T>
         {
             var ret = value;
@@ -75,11 +75,11 @@ namespace Common.Math
         /// <summary>
         /// Between check <![CDATA[min < value <= max]]>
         /// </summary>
-        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="int"></typeparam>
         /// <param name="value">the value to check</param>
         /// <param name="min">Exclusive minimum border</param>
         /// <param name="max">Inclusive maximum border</param>
-        /// <returns>return true if the value is between the min & max else false</returns>
+        /// <returns>return int between the min exclusively & max inclusively </returns>
         public static int IntBetweenEI(this int value, int min, int max)
         {
             var ret = value;
@@ -90,11 +90,11 @@ namespace Common.Math
         /// <summary>
         /// between check <![CDATA[min <= value < max]]>
         /// </summary>
-        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="int"></typeparam>
         /// <param name="value">the value to check</param>
         /// <param name="min">Inclusive minimum border</param>
         /// <param name="max">Exclusive maximum border</param>
-        /// <returns>return true if the value is between the min & max else false</returns>
+        /// <returns>return int between the min inclusively & max exclusively </returns>
         public static int IntBetweenIE(this int value, int min, int max)
         {
             var ret = value;
@@ -109,7 +109,7 @@ namespace Common.Math
         /// <param name="value">the value to check</param>
         /// <param name="min">Exclusive minimum border</param>
         /// <param name="max">Exclusive maximum border</param>
-        /// <returns>return true if the value is between the min & max else false</returns>
+        /// <returns>return integer between the min exclusively & max exclusively </returns>
         public static int IntBetweenEE(this int value, int min, int max)
         {
             var ret = value;
