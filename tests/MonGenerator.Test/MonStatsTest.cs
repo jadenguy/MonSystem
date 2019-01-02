@@ -37,6 +37,7 @@ namespace MonGenerator.Tests
         }
 
         [TestCase(0, 1, 1, 1)]
+        [TestCase(null, 1, 1, 1)]
         [TestCase(1, 1, 1, 1)]
         [TestCase(100, 100, 100, 100)]
         [TestCase(101, 100, 100, 100)]
