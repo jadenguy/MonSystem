@@ -43,7 +43,7 @@ namespace MonGenerator
                 else { } //-- Maybe do something with this later?
             }
         }
-        public MonStats(int initialLevel)
+        public MonStats(int initialLevel = (int)MonStatRanges.levelMin)
         {
             Level = initialLevel;
             Attack = Level;
