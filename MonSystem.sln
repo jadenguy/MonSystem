@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonGenerator", "MonGenerator\MonGenerator.csproj", "{8CCA2755-E078-45D8-B514-1C8CFCABBED8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonGenerator", "src\MonGenerator\MonGenerator.csproj", "{8CCA2755-E078-45D8-B514-1C8CFCABBED8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonGenerator.Test", "MonGenerator.Test\MonGenerator.Test.csproj", "{85241B52-0726-49EE-BBAF-A6C0DAF7959D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonGenerator.Test", "tests\MonGenerator.Test\MonGenerator.Test.csproj", "{85241B52-0726-49EE-BBAF-A6C0DAF7959D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository", "Repository\Repository.csproj", "{E3B3E296-057F-4953-BC0C-1B9374296347}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository", "src\Repository\Repository.csproj", "{E3B3E296-057F-4953-BC0C-1B9374296347}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RepositoryTest", "RepositoryTest\RepositoryTest.csproj", "{96A74299-D838-4006-87EC-F505F9156E9A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RepositoryTest", "tests\RepositoryTest\RepositoryTest.csproj", "{96A74299-D838-4006-87EC-F505F9156E9A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
