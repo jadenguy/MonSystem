@@ -1,4 +1,4 @@
-﻿using Repository;
+﻿using Common.Repository;
 
 namespace MonGenerator
 {

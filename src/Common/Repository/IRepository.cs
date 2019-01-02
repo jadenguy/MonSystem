@@ -2,7 +2,7 @@
 
 using System.Collections.Generic;
 
-namespace Repository
+namespace Common.Repository
 {
     public interface IRepository<T> where T : IEntity
     {

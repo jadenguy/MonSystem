@@ -1,7 +1,7 @@
 
 using System.Collections.Generic;
 
-namespace Repository
+namespace Common.Repository
 {
     public class DictionaryRepository<T> : IRepository<T> where T : IEntity
     {
