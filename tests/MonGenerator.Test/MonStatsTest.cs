@@ -11,6 +11,7 @@ namespace MonGenerator.Tests
         [TestCase(1, 5, 5, true, 5)]
         [TestCase(1, 5, 1, false, 2)]
         [TestCase(1, 5, 1, true, 1)]
+        [TestCase(null, 5, 1, true, 1)]
         public void MonStatIntBetweenMethodTest(int low, int high, int value, bool inclusive, int expectedValue)
         {
             //--Arrange
@@ -26,6 +27,7 @@ namespace MonGenerator.Tests
         [TestCase(MonStatRanges.hpMin, MonStatRanges.hpMax, 256, 255)]
         [TestCase(MonStatRanges.levelMin, MonStatRanges.levelMax, 0, 1)]
         [TestCase(MonStatRanges.levelMin, MonStatRanges.levelMax, 256, 100)]
+        [TestCase(MonStatRanges.levelMin, MonStatRanges.levelMax, null, 1)]
         public void MonStatInRangeMethodTest(MonStatRanges low, MonStatRanges high, int value, int expectedValue)
         {
             //--Arrange
@@ -37,10 +39,10 @@ namespace MonGenerator.Tests
         }
 
         [TestCase(0, 1, 1, 1)]
-        [TestCase(null, 1, 1, 1)]
         [TestCase(1, 1, 1, 1)]
         [TestCase(100, 100, 100, 100)]
         [TestCase(101, 100, 100, 100)]
+        [TestCase(null, 1, 1, 1)]
         public void MonStatsTestGenericStatsTest(int level, int expectedLevel, int expectedAttack, int expectedHp)
         {
             //--Arrange
