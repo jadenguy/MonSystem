@@ -6,17 +6,17 @@ namespace MonGenerator.Tests
     public class MonTypeRepositoryTest
     {
 
-        MonTypeDictionaryRepository monTypeRepository;
+        MonTypeRepository monTypeRepository;
         [SetUp]
         public void Setup()
         {
-            monTypeRepository = new MonTypeDictionaryRepository();
+            monTypeRepository = new MonTypeRepository();
         }
         [Test]
-        public void MonTypeDictionaryRepositoryInstantiateTest()
+        public void MonTypeRepositoryInstantiateTest()
         {
             var actual = monTypeRepository;
-            System.Type expected = typeof(MonTypeDictionaryRepository);
+            System.Type expected = typeof(MonTypeRepository);
             Assert.IsInstanceOf(expected, actual);
         }
         [Test]
