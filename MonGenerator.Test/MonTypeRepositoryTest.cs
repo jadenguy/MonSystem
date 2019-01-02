@@ -6,16 +6,16 @@ namespace MonGenerator.Tests
     public class MonTypeRepositoryTest
     {
 
-        MonTypeDictionaryRepository monTypeRepo;
+        MonTypeDictionaryRepository monTypeRepository;
         [SetUp]
         public void Setup()
         {
-            monTypeRepo = new MonTypeDictionaryRepository();
+            monTypeRepository = new MonTypeDictionaryRepository();
         }
         [Test]
-        public void MonTypeRepositoryInstantiateTest()
+        public void MonTypeDictionaryRepositoryInstantiateTest()
         {
-            var actual = monTypeRepo;
+            var actual = monTypeRepository;
             System.Type expected = typeof(MonTypeDictionaryRepository);
             Assert.IsInstanceOf(expected, actual);
         }
@@ -24,7 +24,7 @@ namespace MonGenerator.Tests
         {
             //--Arrange
             MonType monType = new MonType("guy", 0, 1, 1);
-            var testDelegate = new TestDelegate(delegate { monTypeRepo.Add(monType); });
+            var testDelegate = new TestDelegate(delegate { monTypeRepository.Add(monType); });
 
             //--Act and Assert
             Assert.DoesNotThrow(testDelegate);
