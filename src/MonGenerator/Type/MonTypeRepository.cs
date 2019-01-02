@@ -1,6 +1,8 @@
 using System.Collections.Generic;
+using MonGenerator.Repository;
+using MonGenerator.Type;
 
-namespace MonGenerator
+namespace MonGenerator.Type
 {
     public class MonTypeRepository : MonGeneratorRepository<MonType>
     {

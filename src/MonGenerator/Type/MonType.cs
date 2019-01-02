@@ -1,7 +1,7 @@
 using System;
 using Common.Repository;
 
-namespace MonGenerator
+namespace MonGenerator.Type
 {
     public class MonType : IEntity
     {

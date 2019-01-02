@@ -1,6 +1,7 @@
 using System;
+using Common.Math;
 
-namespace MonGenerator
+namespace MonGenerator.Stats
 {
     public class MonStats
     {
@@ -52,17 +53,8 @@ namespace MonGenerator
 
         public static int InRange(int value, MonStatRanges minimum, MonStatRanges maximum)
         {
-            return IntBetween(value, (int)minimum, (int)maximum, true);
+            return value.InBetweenII((int)minimum, (int)maximum);
         }
 
-        public static int IntBetween(int value, int lowerBound, int upperBound, bool inclusive = true)
-        {
-            int ret;
-            int inclusivityDelta = inclusive ? 0 : 1;
-            if (value > upperBound - inclusivityDelta) ret = upperBound - inclusivityDelta;
-            else if (value < lowerBound + inclusivityDelta) ret = lowerBound + inclusivityDelta;
-            else ret = value;
-            return ret;
-        }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using Common.Repository;
 
-namespace MonGenerator
+namespace MonGenerator.Repository
 {
     public class MonGeneratorRepository<T> : DictionaryRepository<T> where T : IEntity
     {

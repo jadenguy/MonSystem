@@ -1,6 +1,7 @@
 using NUnit.Framework;
+using MonGenerator.Type;
 
-namespace MonGenerator.Tests
+namespace MonGenerator.Type.Tests
 {
     [TestFixture]
     public class MonTypeTest

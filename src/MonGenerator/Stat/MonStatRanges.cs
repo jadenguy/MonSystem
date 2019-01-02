@@ -1,4 +1,4 @@
-namespace MonGenerator
+namespace MonGenerator.Stats
 {
     public enum MonStatRanges
     {

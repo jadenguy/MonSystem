@@ -1,26 +1,11 @@
+using MonGenerator.Stats;
 using NUnit.Framework;
 
-namespace MonGenerator.Tests
+namespace MonGenerator.Stats.Tests
 {
     [TestFixture]
     public class MonStatsGenericTest
     {
-        [TestCase(1, 5, 3, false, 3)]
-        [TestCase(1, 5, 3, true, 3)]
-        [TestCase(1, 5, 5, false, 4)]
-        [TestCase(1, 5, 5, true, 5)]
-        [TestCase(1, 5, 1, false, 2)]
-        [TestCase(1, 5, 1, true, 1)]
-        [TestCase(null, 5, 1, true, 1)]
-        public void MonStatIntBetweenMethodTest(int low, int high, int value, bool inclusive, int expectedValue)
-        {
-            //--Arrange
-            var expected = expectedValue;
-            //--Act
-            var actual = MonStats.IntBetween(value, low, high, inclusive);
-            //--Assert
-            Assert.AreEqual(expected, actual);
-        }
         [TestCase(MonStatRanges.attackMin, MonStatRanges.attackMax, 0, 1)]
         [TestCase(MonStatRanges.attackMin, MonStatRanges.attackMax, 256, 255)]
         [TestCase(MonStatRanges.hpMin, MonStatRanges.hpMax, 0, 1)]

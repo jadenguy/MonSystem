@@ -1,5 +1,7 @@
 using Common.Repository;
 using Common.Math;
+using MonGenerator.Type;
+using MonGenerator.Stats;
 
 namespace MonGenerator
 {
