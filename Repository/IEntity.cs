@@ -5,6 +5,6 @@ namespace Repository
     public abstract class IEntity
     {
         public int Id;
-        public abstract bool Validate();
+        public virtual bool Validate() => true;
     }
 }
