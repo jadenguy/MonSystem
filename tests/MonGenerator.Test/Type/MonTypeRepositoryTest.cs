@@ -25,7 +25,7 @@ namespace MonGenerator.Type.Tests
         public void MonTypeRepositoryAddTest()
         {
             //--Arrange
-            MonType monType = new MonType("guy", 0, 1, 1);
+            MonType monType = new MonType("guy", 42, 0, 0, 0);
             var testDelegate = new TestDelegate(delegate { monTypeRepository.Add(monType); });
 
             //--Act and Assert
