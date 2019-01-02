@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
 
-namespace Repository.Tests
+namespace Common.Repository.Tests
 {
     [TestFixture]
     public class RepositoryTests
