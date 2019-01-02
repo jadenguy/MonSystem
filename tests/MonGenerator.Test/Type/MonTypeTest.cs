@@ -7,7 +7,7 @@ namespace MonGenerator.Type.Tests
     public class MonTypeTest
     {
         [TestCase("newMon", 0, 5, 5, 0, true)]
-        [TestCase("newMon", 0, 5, 95, 0, true)]
+        [TestCase("newMon", 0, 5, 95, 0, false)]
         [TestCase("newMon", 0, 200, -200, 0, false)]
         [TestCase("newMon", 0, 100, -100, 0, true)]
         [TestCase("newMon", 0, 5, 100, 0, false)]
