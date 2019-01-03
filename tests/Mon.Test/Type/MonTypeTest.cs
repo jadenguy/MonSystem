@@ -1,5 +1,4 @@
 using NUnit.Framework;
-using Mon.Type;
 
 namespace Mon.Type.Tests
 {

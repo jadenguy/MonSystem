@@ -1,4 +1,3 @@
-using Mon.Stats;
 using NUnit.Framework;
 
 namespace Mon.Stats.Tests
