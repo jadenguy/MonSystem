@@ -7,22 +7,16 @@ namespace MonGenerator
 {
     public class Mon : IEntity
     {
-        private int monTypeId;
-        private MonTypeRepository monTypeRepository;
-        public Mon()
+        private int _monTypeId;
+        private MonTypeRepository _monTypeRepository;
+        public Mon() => _monTypeRepository = new MonTypeRepository();
+        public MonType MonType { get => _monTypeRepository.FindById(_monTypeId); private set => _monTypeId = value.Id; }
+        public override bool Validate()
         {
-            monTypeRepository = new MonTypeRepository();
-            monTypeId = 0;
-        }
-        public Mon(int MonTypeId)
-        {
-            monTypeRepository = new MonTypeRepository();
-            monTypeId = MonTypeId;
-        }
-        public MonType MonType { get => monTypeRepository.FindById(monTypeId); set => monTypeId = value.Id; }
-        public int BetweenTest(int a, int b, int c)
-        {
-            return a.InBetweenII(b, c);
+            var ret = true;
+            ret = ret && base.Validate();
+            ret = ret && MonType.Validate();
+            return ret;
         }
     }
 }
