@@ -2,7 +2,7 @@ using System;
 using Common.Repository;
 using Common.Math;
 
-namespace MonGenerator.Type
+namespace Mon.Type
 {
     public class MonType : IEntity
     {

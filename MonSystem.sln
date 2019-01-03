@@ -7,11 +7,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{A41FC7FC-D6F
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "src\Common\Common.csproj", "{AB2D8F9F-D05D-441E-9C78-5E0D8BD6D658}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonGenerator", "src\MonGenerator\MonGenerator.csproj", "{F4BBE944-3D07-41D9-AC73-2B957C72B1D6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mon", "src\Mon\Mon.csproj", "{F4BBE944-3D07-41D9-AC73-2B957C72B1D6}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{7152B1F6-29CF-4480-A085-D45F80488C66}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonGenerator.Test", "tests\MonGenerator.Test\MonGenerator.Test.csproj", "{02425B89-23C6-4FD3-82F5-DAC626437BC4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mon.Test", "tests\Mon.Test\Mon.Test.csproj", "{02425B89-23C6-4FD3-82F5-DAC626437BC4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Test", "tests\Common.Test\Common.Test.csproj", "{CE40D47B-768C-481C-B2A4-0049748C73C2}"
 EndProject

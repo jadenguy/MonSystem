@@ -1,15 +1,15 @@
 using Common.Repository;
 using Common.Math;
-using MonGenerator.Type;
-using MonGenerator.Stats;
+using Mon.Type;
+using Mon.Stats;
 
-namespace MonGenerator
+namespace Mon
 {
-    public class Mon : IEntity
+    public class MonEntity : IEntity
     {
         private int _monTypeId;
         private MonTypeRepository _monTypeRepository;
-        public Mon() => _monTypeRepository = new MonTypeRepository();
+        public MonEntity() => _monTypeRepository = new MonTypeRepository();
         public MonType MonType { get => _monTypeRepository.FindById(_monTypeId); private set => _monTypeId = value.Id; }
         public override bool Validate()
         {

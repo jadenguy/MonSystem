@@ -1,8 +1,8 @@
 using NUnit.Framework;
-using MonGenerator.Repository;
-using MonGenerator.Type;
+using Mon.Repository;
+using Mon.Type;
 
-namespace MonGenerator.Type.Tests
+namespace Mon.Type.Tests
 {
     [TestFixture]
     public class MonTypeRepositoryTest

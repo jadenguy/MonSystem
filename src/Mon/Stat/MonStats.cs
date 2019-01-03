@@ -1,7 +1,7 @@
 using System;
 using Common.Math;
 
-namespace MonGenerator.Stats
+namespace Mon.Stats
 {
     public class MonStats
     {

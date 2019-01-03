@@ -1,4 +1,4 @@
-namespace MonGenerator.Type
+namespace Mon.Type
 {
     public enum MonTypeRanges
     {

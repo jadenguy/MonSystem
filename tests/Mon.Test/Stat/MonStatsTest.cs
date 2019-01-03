@@ -1,7 +1,7 @@
-using MonGenerator.Stats;
+using Mon.Stats;
 using NUnit.Framework;
 
-namespace MonGenerator.Stats.Tests
+namespace Mon.Stats.Tests
 {
     [TestFixture]
     public class MonStatsGenericTest
