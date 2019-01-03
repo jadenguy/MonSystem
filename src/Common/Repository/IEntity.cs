@@ -5,6 +5,8 @@ namespace Common.Repository
     public abstract class IEntity
     {
         public int Id;
-        public virtual bool Validate() => true;
+        public IEntity() { }
+        public IEntity(int id) => Id = id;
+        public virtual bool Validate() => Id.CompareTo(null) != 0;
     }
 }
