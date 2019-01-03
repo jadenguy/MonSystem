@@ -1,30 +1,60 @@
-﻿using System;
-using Common.Repository;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 
 namespace Common.Repository.Tests
 {
-    public class TestEntity : IEntity
-    {
-        public TestEntity(int id) : base(id) { }
-    }
+  
     [TestFixture]
     public class DictionaryRepositoryTest
     {
         [Test]
-        public void AddMemberTest()
+        public void CrudTest()
         {
             //-- Arrange
-            var dictionaryRepository = new DictionaryRepository<TestEntity>();
-            var testEntity = new TestEntity(0);
-            var expected = testEntity.Id;
+            var dictionaryRepository = new DictionaryRepository<EquatableStringEntity>();
+            var testEntity = new EquatableStringEntity(1) { Data = "response1" };
+            var updateEntity = new EquatableStringEntity(1) { Data = "response2" };
+            var expectedAdded = new EquatableStringEntity(1) { Data = "response1" };
+            var expectedUpdate = new EquatableStringEntity(1) { Data = "response2" };
 
             //-- Act
-            dictionaryRepository.Add(testEntity);
-            var actual = dictionaryRepository.FindById(testEntity.Id).Id;
 
-            //-- Assert
-            Assert.AreEqual(expected, actual);
+            try
+            {
+                //-- Create
+                dictionaryRepository.Add(testEntity);
+
+                //-- Read
+                var actualAdded = dictionaryRepository.FindById(testEntity.Id);
+
+                //-- Update
+                dictionaryRepository.Update(updateEntity);
+                var actualUpdated = dictionaryRepository.FindById(testEntity.Id);
+
+                //-- Delete
+                dictionaryRepository.Delete(testEntity);
+                EquatableStringEntity actualDeleted = null;
+                try
+                {
+                    actualDeleted = dictionaryRepository.FindById(testEntity.Id);
+                }
+                catch (System.Collections.Generic.KeyNotFoundException)
+                {
+                }
+                catch (System.Exception ex)
+                {
+                    throw ex;
+                }
+
+                //-- Assert
+                Assert.AreEqual(expectedAdded, actualAdded);
+                Assert.AreEqual(expectedUpdate, actualUpdated);
+                Assert.IsNull(actualDeleted);
+            }
+            catch (System.Exception ex)
+            {
+                System.Console.WriteLine(ex);
+                Assert.Fail();
+            }
         }
     }
 }
