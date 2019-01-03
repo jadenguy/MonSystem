@@ -1,5 +1,4 @@
 using NUnit.Framework;
-using Mon.Repository;
 using Mon.Type;
 
 namespace Mon.Type.Tests
