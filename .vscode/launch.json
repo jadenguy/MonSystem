@@ -14,7 +14,7 @@
             "cwd": "${workspaceFolder}/src/ConsoleApp",
             "console": "integratedTerminal",
             "stopAtEntry": false,
-            "internalConsoleOptions": "openOnSessionStart"
+            "internalConsoleOptions": "openOnFirstSessionStart"
         },
         {
             "name": ".NET Core Attach",
