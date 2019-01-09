@@ -7,60 +7,52 @@ namespace ConsoleApp
 {
     partial class Program
     {
-        // public static event LoggerHandler Log;
-        private static LoggerHandler _log;
-        public static event LoggerHandler LogHandler
+        private static object mainObject;
+        public static event EventHandler<LoggerEventArgs> _logThis;
+        public static Logger Log;
+        public static event EventHandler<LoggerEventArgs> LogHandler
+
         {
             [MethodImpl(MethodImplOptions.Synchronized)]
-            add
-            {
-                _log = (LoggerHandler)Delegate.Combine(_log, value);
-            }
+            add => _logThis = (EventHandler<LoggerEventArgs>)Delegate.Combine(_logThis, value);
             [MethodImpl(MethodImplOptions.Synchronized)]
-            remove
-            {
-                _log = (LoggerHandler)Delegate.Remove(_log, value);
-            }
+            remove => _logThis = (EventHandler<LoggerEventArgs>)Delegate.Remove(_logThis, value);
         }
-        static int Main(string[] args)
+        static int Main()
         {
             AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(GlobalExceptionHandler);
-            System.Console.WriteLine("You attempt to hack the computer. Roll for initiative.");
-            var logger = new Logger();
-            LogHandler += new LoggerHandler(logger.FileWrite);
-            LogHandler += new LoggerHandler(logger.ConsoleWrite);
-            SavingThrow(10);
+            mainObject = "MainMethod";
+            Log = new Logger("file.log");
+            LogHandler += Log.FileWrite;
+            LogHandler += Log.ConsoleWrite;
+            LogHandler += Log.DebugWrite;
+            LogThis(mainObject, "Starting");
+            LogThis(mainObject, "You attempt to hack the computer. Roll for initiative.");
+            var Dice = new Dice();
+            LogThis(mainObject, Dice.SavingThrow(20));
+            LogThis(mainObject, "Closing");
             return 0;
-        }
-        private static void SavingThrow(int needed)
-        {
-            var dice = new Random();
-            var diceRoll = dice.Next(20) + 1;
-            System.Console.WriteLine($"You roll a {diceRoll}");
-            if (diceRoll < needed)
-            {
-                var ex = new YouLoseException("You die");
-                throw ex;
-            }
-            else
-            {
-                System.Console.WriteLine("You win the saving throw");
-            }
         }
         static void GlobalExceptionHandler(object sender, EventArgs args)
         {
-            LogThis("Exception detected");
-            LogThis(sender.ToString());
-            LogThis(args.ToString());
-            var ex = args;
+            LogThis(mainObject, "Exception detected");
+            LogThis(mainObject, sender.ToString());
+            LogThis(mainObject, args.ToString());
+            var ex = args as UnhandledExceptionEventArgs;
+            if (ex != null)
+            {
+                LogThis(mainObject, ex.ExceptionObject.ToString());
+            }
+            LogThis(mainObject, "Closing Unexpectedly");
             Environment.Exit(1);
         }
-        public static void LogThis(string logMessage)
+        public static void LogThis(object sender, string logMessage)
         {
-            LoggerHandler logThis = _log as LoggerHandler;
+            EventHandler<LoggerEventArgs> logThis = _logThis as EventHandler<LoggerEventArgs>;
+            var loggerEventArgs = new LoggerEventArgs(logMessage);
             if (logThis != null)
             {
-                logThis(logMessage);
+                _logThis(sender, loggerEventArgs);
             }
         }
     }
