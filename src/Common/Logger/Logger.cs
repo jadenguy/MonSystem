@@ -1,4 +1,6 @@
 using System;
+using System.Diagnostics;
+using System.IO;
 
 namespace Common.Logger
 {
@@ -6,28 +8,45 @@ namespace Common.Logger
     {
         private DateTime opened;
         private string path;
-
+        private string now => DateTime.Now.ToString("o");
         public Logger()
         {
             opened = DateTime.Now;
-
+            path = "file.log";
+        }
+        public Logger(string filepath)
+        {
+            opened = DateTime.Now;
+            path = filepath;
         }
         public DateTime Opened { get => opened; }
-        public string Path { get => path; set => path = value; }
-
-        public void FileWrite(string message)
+        public string Path
         {
-            System.Diagnostics.Debug.WriteLine($"{now()}: {message}");
+            get => path; set { if (path != value) path = value; }
         }
-
-        private string now()
+        public void FileWrite(object sender, LoggerEventArgs e)
         {
-            return DateTime.Now.ToString("o");
+            string senderString = string.Empty;
+            if (sender != null)
+            {
+                var notBlank = !string.IsNullOrWhiteSpace(sender.ToString());
+                if (notBlank)
+                {
+                    senderString = $" [{(sender.ToString())}]";
+                }
+            }
+            var lines = $"{now}{senderString}: {e.Message}";
+            TextWriter textWriter = new StreamWriter(path, append: true);
+            textWriter.WriteLineAsync(lines);
+            textWriter.Close();
         }
-
-        public void ConsoleWrite(string message)
+        public void ConsoleWrite(object sender, LoggerEventArgs e)
         {
-            System.Console.WriteLine(message);
+            Console.WriteLine(e.Message);
+        }
+        public void DebugWrite(object sender, LoggerEventArgs e)
+        {
+            Debug.WriteLine(e.Message);
         }
     }
 }
