@@ -4,6 +4,8 @@ namespace Common.Math
 {
     public class Dice
     {
+        public event EventHandler LoseEvent;
+        public event EventHandler WinEvent;
         private Random _rand = new Random();
         public Dice(int seed)
         {
@@ -12,8 +14,10 @@ namespace Common.Math
         public Dice()
         {
         }
-        public event EventHandler LoseEvent;
-        public event EventHandler WinEvent;
+        public int Roll()
+        {
+            return _rand.Next(20) + 1;
+        }
         public string SavingThrow(int needed)
         {
             int diceRoll = Roll();
@@ -36,10 +40,6 @@ namespace Common.Math
             WinEvent?.Invoke(this, EventArgs.Empty);
         }
 
-        public int Roll()
-        {
-            return _rand.Next(20) + 1;
-        }
         private void OnLose()
         {
             LoseEvent?.Invoke(this, EventArgs.Empty);

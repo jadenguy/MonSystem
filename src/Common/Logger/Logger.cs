@@ -1,22 +1,27 @@
 using System;
 using System.Diagnostics;
 using System.IO;
+using System.Runtime.CompilerServices;
 
 namespace Common.Logger
 {
     public class Logger
     {
-        private DateTime opened;
-        private string path;
-        private string now => DateTime.Now.ToString("o");
-        public Logger()
+        private DateTime opened = DateTime.Now;
+        private event EventHandler<LoggerEventArgs> _logThis;
+        public event EventHandler<LoggerEventArgs> LogEvent
         {
-            opened = DateTime.Now;
-            path = "file.log";
+            [MethodImpl(MethodImplOptions.Synchronized)]
+            add => _logThis = (EventHandler<LoggerEventArgs>)Delegate.Combine(_logThis, value);
+            [MethodImpl(MethodImplOptions.Synchronized)]
+            remove => _logThis = (EventHandler<LoggerEventArgs>)Delegate.Remove(_logThis, value);
         }
+
+        private string path = "file.log";
+        private string now => DateTime.Now.ToString("o");
+        public Logger() { }
         public Logger(string filepath)
         {
-            opened = DateTime.Now;
             path = filepath;
         }
         public DateTime Opened { get => opened; }
@@ -47,6 +52,25 @@ namespace Common.Logger
         public void DebugWrite(object sender, LoggerEventArgs e)
         {
             Debug.WriteLine(e);
+        }
+        public void LogThis(string logMessage)
+        {
+            LogThis(new object(), new LoggerEventArgs(logMessage));
+        }
+        public void LogThis(object sender, string logMessage)
+        {
+            LogThis(sender, new LoggerEventArgs(logMessage));
+        }
+        public void LogThis<T>(object sender, T eventArgs) where T : EventArgs
+        {
+            LogThis(sender, eventArgs.ToString());
+        }
+        public void LogThis(object sender, LoggerEventArgs eventArgs)
+        {
+            if (_logThis != null)
+            {
+                _logThis(sender, eventArgs);
+            }
         }
     }
 }
