@@ -8,6 +8,22 @@ namespace Common.Logger
         {
             Message = message;
         }
-        public string Message { get; set; }
+        public LoggerEventArgs(string message, string type)
+        {
+            Message = message;
+            Type = type;
+        }
+        public string Message;
+        public string Type;
+        public override string ToString()
+        {
+            var ret = "";
+            if (!string.IsNullOrWhiteSpace(Type))
+            {
+                ret += $"<{Type}> ";
+            }
+            ret += Message;
+            return ret;
+        }
     }
 }

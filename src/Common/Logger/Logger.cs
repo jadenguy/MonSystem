@@ -35,18 +35,18 @@ namespace Common.Logger
                     senderString = $" [{(sender.ToString())}]";
                 }
             }
-            var lines = $"{now}{senderString}: {e.Message}";
+            var lines = $"{now}{senderString}: {e}";
             TextWriter textWriter = new StreamWriter(path, append: true);
             textWriter.WriteLineAsync(lines);
             textWriter.Close();
         }
         public void ConsoleWrite(object sender, LoggerEventArgs e)
         {
-            Console.WriteLine(e.Message);
+            Console.WriteLine(e);
         }
         public void DebugWrite(object sender, LoggerEventArgs e)
         {
-            Debug.WriteLine(e.Message);
+            Debug.WriteLine(e);
         }
     }
 }
