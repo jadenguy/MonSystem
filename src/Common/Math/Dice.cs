@@ -4,15 +4,21 @@ namespace Common.Math
 {
     public class Dice
     {
-        public event EventHandler LoseEvent;
-        public event EventHandler WinEvent;
+        public event EventHandler<string> LoseEvent;
+        public event EventHandler<string> WinEvent;
         private Random _rand = new Random();
-        public Dice(int seed)
+        public Dice(int? seed = null)
         {
-            _rand = new Random(seed);
-        }
-        public Dice()
-        {
+            int rSeed;
+            if (seed == null)
+            {
+                rSeed = (new Random()).Next();
+            }
+            else
+            {
+                rSeed = (int)seed;
+            }
+            _rand = new Random(rSeed);
         }
         public int Roll()
         {
@@ -25,24 +31,24 @@ namespace Common.Math
             if (diceRoll < needed)
             {
                 ret = $"{ret}, you die";
-                OnLose();
+                OnLose(this, ret);
             }
             else
             {
                 ret = $"{ret}, you win the saving throw, you now have root";
-                OnWin();
+                OnWin(this, ret);
             }
             return ret;
         }
 
-        private void OnWin()
+        private void OnWin(Dice dice, string ret)
         {
-            WinEvent?.Invoke(this, EventArgs.Empty);
+            WinEvent?.Invoke(this, ret);
         }
 
-        private void OnLose()
+        private void OnLose(Dice dice, string ret)
         {
-            LoseEvent?.Invoke(this, EventArgs.Empty);
+            LoseEvent?.Invoke(this, ret);
         }
     }
 }
