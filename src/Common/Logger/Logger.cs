@@ -8,12 +8,12 @@ namespace Common.Logger
 {
     public class Logger
     {
-        private DateTime opened = DateTime.Now;
-        private const string defaultFilePath = "file.log";
-        private TextWriter textWriter = new StreamWriter(defaultFilePath, append: true);
+        private DateTime _opened = DateTime.Now;
+        private const string _defaultFilePath = "file.log";
+        private TextWriter _textWriter = new StreamWriter(_defaultFilePath, append: true);
         ~Logger()
         {
-            TextWriter.Close();
+            _textWriter.Close();
         }
         public bool WriteFile
         {
@@ -37,8 +37,8 @@ namespace Common.Logger
         {
             if (!IsDelegateInEvent(del))
             {
-                LogEvent -= del;
-                LogEvent += del;
+                _logThis -= del;
+                _logThis += del;
             }
         }
         private bool IsDelegateInEvent(EventHandler<LoggerEventArgs> del)
@@ -48,18 +48,11 @@ namespace Common.Logger
                                 Count() > 0;
         }
         public event EventHandler<LoggerEventArgs> _logThis;
-        private event EventHandler<LoggerEventArgs> LogEvent
-        {
-            [MethodImpl(MethodImplOptions.Synchronized)]
-            add => _logThis = (EventHandler<LoggerEventArgs>)Delegate.Combine(_logThis, value);
-            [MethodImpl(MethodImplOptions.Synchronized)]
-            remove => _logThis = (EventHandler<LoggerEventArgs>)Delegate.Remove(_logThis, value);
-        }
-        private string path = defaultFilePath;
+        private string path = _defaultFilePath;
         private string nowString => DateTime.Now.ToString("o");
         private Logger() { }
         public Logger(string filepath) => Path = filepath;
-        private DateTime Opened { get => opened; }
+        private DateTime Opened { get => _opened; }
         private string Path
         {
             get => path;
@@ -68,12 +61,12 @@ namespace Common.Logger
                 if (string.IsNullOrWhiteSpace(value) && path != value)
                 {
                     path = value;
-                    TextWriter.Close();
-                    TextWriter = new StreamWriter(path, append: true);
+                    _textWriter.Close();
+                    _textWriter = new StreamWriter(path, append: true);
                 }
             }
         }
-        public TextWriter TextWriter { get => textWriter; set => textWriter = value; }
+        
         private void FileWrite(object sender, LoggerEventArgs e)
         {
             string senderString = string.Empty;
@@ -82,7 +75,7 @@ namespace Common.Logger
                 senderString = $" [{(sender.ToString())}]";
             }
             var lines = $"{nowString}{senderString}: {e}";
-            TextWriter.WriteLine(lines);
+            _textWriter.WriteLine(lines);
         }
         private void ConsoleWrite(object sender, LoggerEventArgs e) => Console.WriteLine(e);
         private string ReturnWrite(object sender, LoggerEventArgs e) => e.ToString();
