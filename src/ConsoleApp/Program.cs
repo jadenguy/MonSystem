@@ -1,4 +1,5 @@
 ﻿using System;
+using Common.Exception;
 using Common.Logger;
 using Common.Math;
 
@@ -54,6 +55,6 @@ namespace ConsoleApp
                 Environment.Exit(1);
             }
         }
-        static void ThrowException(object sender, string eventArgs) => throw new Exception(eventArgs.ToString());
+        static void ThrowException(object sender, string eventArgs) => throw new YouLoseException(eventArgs.ToString());
     }
 }
