@@ -13,6 +13,11 @@ namespace Common.Logger
             Message = message;
             Type = type;
         }
+
+        public LoggerEventArgs()
+        {
+        }
+
         public string Message;
         public string Type;
         public override string ToString()

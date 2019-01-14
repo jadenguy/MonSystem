@@ -9,12 +9,7 @@ namespace Common.Logger
     public class Logger
     {
         private DateTime _opened = DateTime.Now;
-        private const string _defaultFilePath = "file.log";
-        private TextWriter _textWriter = new StreamWriter(_defaultFilePath, append: true);
-        ~Logger()
-        {
-            _textWriter.Close();
-        }
+        private TextWriter _textWriter;
         public bool WriteFile
         {
             get => IsDelegateInEvent(new EventHandler<LoggerEventArgs>(FileWrite));
@@ -47,10 +42,10 @@ namespace Common.Logger
                                 Where(d => d.Equals(del))?.
                                 Count() > 0;
         }
-        public event EventHandler<LoggerEventArgs> _logThis;
-        private string path = _defaultFilePath;
+        private event EventHandler<LoggerEventArgs> _logThis;
+        private string path;
         private string nowString => DateTime.Now.ToString("o");
-        private Logger() { }
+        public Logger() { }
         public Logger(string filepath) => Path = filepath;
         private DateTime Opened { get => _opened; }
         private string Path
@@ -58,15 +53,14 @@ namespace Common.Logger
             get => path;
             set
             {
-                if (string.IsNullOrWhiteSpace(value) && path != value)
+                if (!string.IsNullOrWhiteSpace(value) && value != path)
                 {
+                    _textWriter?.Close();
                     path = value;
-                    _textWriter.Close();
                     _textWriter = new StreamWriter(path, append: true);
                 }
             }
         }
-        
         private void FileWrite(object sender, LoggerEventArgs e)
         {
             string senderString = string.Empty;
@@ -74,13 +68,13 @@ namespace Common.Logger
             {
                 senderString = $" [{(sender.ToString())}]";
             }
-            var lines = $"{nowString}{senderString}: {e}";
+            var lines = $"{nowString}{senderString} {e}";
             _textWriter.WriteLine(lines);
+            _textWriter.Flush();
         }
         private void ConsoleWrite(object sender, LoggerEventArgs e) => Console.WriteLine(e);
-        private string ReturnWrite(object sender, LoggerEventArgs e) => e.ToString();
         private void DebugWrite(object sender, LoggerEventArgs e) => Debug.WriteLine(e);
         public void LogThis(object sender, string logMessage) => LogThis(sender, new LoggerEventArgs(logMessage));
-        private void LogThis(object sender, LoggerEventArgs loggerEventArgs) => _logThis?.Invoke(sender, loggerEventArgs);
+        public void LogThis(object sender, LoggerEventArgs loggerEventArgs) => _logThis?.Invoke(sender, loggerEventArgs);
     }
 }
