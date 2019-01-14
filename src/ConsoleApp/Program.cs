@@ -13,37 +13,42 @@ namespace ConsoleApp
         static int Main()
         {
             SetUpGlobalExceptionHandlerAndLogging();
-            Hack(21);
+            Hack(10);
             return 0;
         }
         static void GlobalExceptionHandler(object sender, EventArgs args)
         {
+            System.Console.WriteLine("GlobalExceptionHandler");
             try
             {
-                Log("Exception detected");
-                Log(sender.ToString());
-                Log(args.ToString());
+                var message = new LoggerEventArgs();
+                message.Type = "GlobalExceptionHandler";
+                Log(sender, message, "Exception detected");
                 var ex = args as UnhandledExceptionEventArgs;
                 if (ex != null)
                 {
-                    Debug.Assert(ex.ExceptionObject != null);
-                    Log(ex.ExceptionObject.ToString());
+                    Log(sender, message, ex.ExceptionObject.ToString());
                 }
-                Log("Closing Unexpectedly");
+                Log(sender, message, "Closing Unexpectedly");
             }
             catch (System.Exception ex)
             {
-                System.Console.WriteLine(ex);
                 System.Console.WriteLine("GlobalExceptionHandlerFail");
+                System.Console.WriteLine(ex);
+                throw;
             }
-            System.Console.WriteLine("GlobalExceptionHandlerDone");
             Environment.Exit(1);
+        }
+        private static void Log(object sender, LoggerEventArgs message, string text)
+        {
+            message.Message = text;
+            Log(sender, message);
         }
         private static void SetUpGlobalExceptionHandlerAndLogging()
         {
             AppDomain.CurrentDomain.UnhandledException += GlobalExceptionHandler;
             System.Threading.Tasks.TaskScheduler.UnobservedTaskException += GlobalExceptionHandler;
-            mainObject = nameof(Main);
+            mainObject = "Program." + nameof(Main);
             _logger.WriteDebug = true;
             _logger.WriteConsole = true;
             _logger.WriteFile = true;
@@ -59,6 +64,7 @@ namespace ConsoleApp
             Log("Closing");
         }
         private static void Log(string message) => _logger.LogThis(mainObject, message);
+        private static void Log(object sender, LoggerEventArgs message) => _logger.LogThis(sender, message);
         static void ThrowException(object sender, string eventArgs) => throw new YouLoseException(eventArgs);
     }
 }
